@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function SideNavBar() {
     return (
@@ -8,30 +9,30 @@ export default function SideNavBar() {
                 <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-label mt-1">Institutional Ledger</p>
             </div>
             <nav className="flex-1 px-3 space-y-1">
-                <a className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm" href="#">
+                <Link href="/" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
                     <span className="material-symbols-outlined mr-3 text-sm">dashboard</span>
                     <span className="font-headline text-sm font-medium">Dashboard</span>
-                </a>
-                <a className="flex items-center px-4 py-3 bg-[#00E1AB]/10 text-[#00E1AB] border-l-2 border-[#00E1AB] rounded-sm" href="#">
+                </Link>
+                <Link href="/nodes" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
+                    <span className="material-symbols-outlined mr-3 text-sm">hub</span>
+                    <span className="font-headline text-sm font-medium">Data Nodes</span>
+                </Link>
+                <Link href="#" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
                     <span className="material-symbols-outlined mr-3 text-sm">account_balance</span>
                     <span className="font-headline text-sm font-medium">ESG Ledger</span>
-                </a>
-                <a className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm" href="#">
-                    <span className="material-symbols-outlined mr-3 text-sm">monitoring</span>
-                    <span className="font-headline text-sm font-medium">Portfolio</span>
-                </a>
-                <a className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm" href="#">
+                </Link>
+                <Link href="/invoice" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
                     <span className="material-symbols-outlined mr-3 text-sm">receipt_long</span>
                     <span className="font-headline text-sm font-medium">Transactions</span>
-                </a>
-                <a className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm" href="#">
+                </Link>
+                <Link href="#" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
                     <span className="material-symbols-outlined mr-3 text-sm">analytics</span>
                     <span className="font-headline text-sm font-medium">Reporting</span>
-                </a>
-                <a className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm" href="#">
+                </Link>
+                <Link href="#" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
                     <span className="material-symbols-outlined mr-3 text-sm">settings</span>
                     <span className="font-headline text-sm font-medium">Settings</span>
-                </a>
+                </Link>
             </nav>
             <div className="px-6 py-4">
                 <button className="w-full py-2.5 bg-primary text-on-primary font-headline font-bold text-xs rounded-[4px] tracking-tight uppercase">
