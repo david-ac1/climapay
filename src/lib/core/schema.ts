@@ -11,6 +11,7 @@ export interface VerificationNodeData {
 
 export interface ContractTerms {
     invoiceId: string;
+    buyerName?: string;
     basePrice: number;
     carbonCeiling: number; // The threshold limit (T)
     penaltyRate: number; // Rate per excess unit (r)

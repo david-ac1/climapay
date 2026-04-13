@@ -1,0 +1,45 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Contract {
+  id            String       @id @default(cuid())
+  invoiceId     String       @unique
+  buyerName     String
+  basePrice     Float
+  carbonCeiling Int
+  penaltyRate   Float
+  rebateRate    Float
+  createdAt     DateTime     @default(now())
+  settlements   Settlement[]
+}
+
+model NodeLog {
+  id          String       @id @default(cuid())
+  nodeId      String
+  source      String
+  timestamp   DateTime     @default(now())
+  metric      Float
+  unit        String
+  settlements Settlement[]
+}
+
+model Settlement {
+  id            String   @id @default(cuid())
+  contractId    String
+  nodeLogId     String
+  adjustedPrice Float
+  excessCarbon  Float
+  rebateApplied Float
+  status        String
+  auditHash     String   @unique
+  executedAt    DateTime @default(now())
+
+  contract Contract @relation(fields: [contractId], references: [id])
+  nodeLog  NodeLog  @relation(fields: [nodeLogId], references: [id])
+}

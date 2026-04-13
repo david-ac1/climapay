@@ -77,7 +77,7 @@ export default function InvoicePage() {
                             </div>
                             <div className="text-right">
                                 <p className="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Bill To</p>
-                                <p className="font-headline font-bold text-lg mb-1">Global Logistics Corp</p>
+                                <p className="font-headline font-bold text-lg mb-1">{contract.buyerName || 'Global Logistics Corp'}</p>
                                 <p className="text-on-surface-variant text-sm leading-relaxed">
                                     Industrial Harbor Dr. 12<br />
                                     Rotterdam, Netherlands<br />

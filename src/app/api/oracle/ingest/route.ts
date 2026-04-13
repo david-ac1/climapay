@@ -1,28 +1,37 @@
 import { NextResponse } from 'next/server';
-import { ContractTerms, VerificationNodeData } from '@/lib/core/schema';
 import { calculateSettlement } from '@/lib/core/settlement';
 import { generateWitnessHash } from '@/lib/core/crypto';
+import { prisma } from '@/lib/db';
+import { VerificationNodeData, ContractTerms } from '@/lib/core/schema';
 
 export async function POST(request: Request) {
     try {
-        const overrideContract: Partial<ContractTerms> = await request.json().catch(() => ({}));
+        const payload = await request.json().catch(() => ({}));
+        const tgtInvoiceId = payload.invoiceId || 'CP-9928-TX';
 
-        // Standard Contract Template
+        // 1. Fetch Contract from Persistence Layer
+        const contractDb = await prisma.contract.findUnique({
+            where: { invoiceId: tgtInvoiceId }
+        });
+
+        if (!contractDb) {
+            return NextResponse.json({ error: 'Contract Not Found' }, { status: 404 });
+        }
+
         const contract: ContractTerms = {
-            invoiceId: overrideContract.invoiceId || 'CP-9928-TX',
-            basePrice: overrideContract.basePrice || 22600.00,
-            carbonCeiling: overrideContract.carbonCeiling || 200,
-            penaltyRate: overrideContract.penaltyRate || 50, // 50 units per excess metric
-            rebateRate: overrideContract.rebateRate || 0.085, // 8.5%
+            invoiceId: contractDb.invoiceId,
+            basePrice: contractDb.basePrice,
+            carbonCeiling: contractDb.carbonCeiling,
+            penaltyRate: contractDb.penaltyRate,
+            rebateRate: contractDb.rebateRate,
         };
 
-        // 1. Fetch Real Data from National Grid ESO Carbon Intensity API
+        // 2. Fetch Real Data from National Grid ESO Carbon Intensity API
         let nodeData: VerificationNodeData;
         let isFaulty = false;
 
         try {
             const response = await fetch('https://api.carbonintensity.org.uk/intensity', {
-                // High Availability: short timeout to simulate strict PENDING_AUDIT logic
                 signal: AbortSignal.timeout(5000)
             });
 
@@ -42,7 +51,7 @@ export async function POST(request: Request) {
             console.warn('Oracle Fetch Failed, falling back to Fault-Tolerance Mode:', error);
             isFaulty = true;
             nodeData = {
-                nodeId: 'NODE-UK-ESO-01',
+                nodeId: 'NODE-UK-ESO-01-',
                 source: 'National Grid ESO',
                 timestamp: new Date().toISOString(),
                 metric: 0,
@@ -50,11 +59,43 @@ export async function POST(request: Request) {
             };
         }
 
-        // 2. The Settlement Engine (Math Core)
+        // 3. The Settlement Engine (Math Core)
         const snapshot = calculateSettlement(contract, nodeData, isFaulty);
+        const auditHash = generateWitnessHash(snapshot);
 
-        // 3. Cryptographic Witnessing
-        snapshot.auditHash = generateWitnessHash(snapshot);
+        // 4. Persistence Execution: Transactionally save the Log and Settlement
+        const savedSettlement = await prisma.$transaction(async (tx: any) => {
+            const log = await tx.nodeLog.create({
+                data: {
+                    nodeId: nodeData.nodeId,
+                    source: nodeData.source,
+                    metric: nodeData.metric,
+                    unit: nodeData.unit,
+                }
+            });
+
+            return await tx.settlement.upsert({
+                where: { auditHash: auditHash }, // Prevent duplicates if logic is pure
+                update: {
+                    adjustedPrice: snapshot.adjustedPrice,
+                    excessCarbon: snapshot.excessCarbon,
+                    rebateApplied: snapshot.rebateApplied,
+                    status: snapshot.status,
+                    nodeLogId: log.id,
+                },
+                create: {
+                    contractId: contractDb.id,
+                    nodeLogId: log.id,
+                    adjustedPrice: snapshot.adjustedPrice,
+                    excessCarbon: snapshot.excessCarbon,
+                    rebateApplied: snapshot.rebateApplied,
+                    status: snapshot.status,
+                    auditHash: auditHash,
+                }
+            });
+        });
+
+        snapshot.auditHash = savedSettlement.auditHash;
 
         return NextResponse.json(snapshot);
 
