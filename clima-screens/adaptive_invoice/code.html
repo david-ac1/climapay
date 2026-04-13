@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500&amp;family=Geist+Mono:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e5e2e1",
+                        "outline": "#86948f",
+                        "secondary": "#5ddbc2",
+                        "on-error": "#690005",
+                        "background": "#131313",
+                        "surface-dim": "#131313",
+                        "surface-bright": "#3a3939",
+                        "inverse-primary": "#006c50",
+                        "surface-container-highest": "#353534",
+                        "secondary-fixed-dim": "#5ddbc2",
+                        "primary": "#00e1ab",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-variant": "#353534",
+                        "tertiary-fixed-dim": "#b8d300",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed": "#00201b",
+                        "on-secondary-container": "#003028",
+                        "on-secondary-fixed-variant": "#005045",
+                        "secondary-fixed": "#7cf7de",
+                        "surface": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#3d4946",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#00e1ab",
+                        "primary-container": "#00a47c",
+                        "surface-tint": "#00e1ab",
+                        "on-primary-fixed-variant": "#00513c",
+                        "tertiary-fixed": "#d2f000",
+                        "on-tertiary-fixed-variant": "#414c00",
+                        "on-surface-variant": "#bccac5",
+                        "tertiary-container": "#869a00",
+                        "on-secondary": "#00382f",
+                        "tertiary": "#b8d300",
+                        "inverse-on-surface": "#313030",
+                        "on-tertiary-fixed": "#191e00",
+                        "secondary-container": "#00a38d",
+                        "on-primary": "#003828",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed": "#002116",
+                        "surface-container": "#201f1f",
+                        "on-primary-container": "#003122",
+                        "primary-fixed": "#36ffc4",
+                        "on-tertiary-container": "#262d00",
+                        "on-tertiary": "#2c3400",
+                        "on-background": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Geist Mono", "monospace"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-stroke {
+            border: 0.5px solid transparent;
+            background-image: linear-gradient(#201f1f, #201f1f), linear-gradient(45deg, rgba(61, 73, 70, 0.3) 0%, rgba(0, 225, 171, 0.6) 100%);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        .glow-mint {
+            box-shadow: 0 0 20px rgba(0, 225, 171, 0.15);
+        }
+        .neon-pulse {
+            position: relative;
+        }
+        .neon-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: #00e1ab;
+            filter: blur(12px);
+            opacity: 0.2;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="fixed left-0 h-screen w-64 border-r border-primary/20 bg-[#131313]/60 backdrop-blur-3xl flex flex-col py-6 z-50">
+<div class="px-6 mb-10">
+<h1 class="text-xl font-semibold tracking-tighter text-primary font-headline">ClimaPay</h1>
+<p class="text-[10px] text-on-surface-variant tracking-[0.2em] font-label mt-1">INSTITUTIONAL LEDGER</p>
+</div>
+<nav class="flex-1 space-y-1 px-3">
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors bg-primary/10 text-primary border-l-2 border-primary" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="receipt_long">receipt_long</span>
+<span class="text-sm font-medium">Transactions</span>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="account_balance">account_balance</span>
+<span class="text-sm font-medium">ESG Ledger</span>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="monitoring">monitoring</span>
+<span class="text-sm font-medium">Portfolio</span>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="analytics">analytics</span>
+<span class="text-sm font-medium">Reporting</span>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white hover:bg-white/5" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-3 pt-6 border-t border-outline-variant/30 space-y-1">
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="text-sm">Support</span>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-sm transition-colors text-on-surface-variant hover:text-white" href="#">
+<span class="material-symbols-outlined mr-3 text-[20px]" data-icon="logout">logout</span>
+<span class="text-sm">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-8 h-16 w-full fixed top-0 z-40 ml-64 bg-[#0D0D0D]/80 backdrop-blur-2xl border-b border-primary/10" style="width: calc(100% - 16rem);">
+<div class="flex items-center gap-6">
+<div class="bg-surface-container-lowest border border-outline-variant px-4 py-1.5 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label text-xs tracking-wider">VERIFICATION: VERIFIED</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-sm bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="professional male executive portrait in dark suit with soft cinematic lighting against a dark neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXDWXiazIxlIsz4vGebHWkwJ_e__wx4jMg3Jd5KTRf2HlD4CMW2gIJs3V_n163fOo-of_I6JthJG0GD4wFzH7PbZc9YubXJsSDmAF1qfkx7vTQCZa_EadvoLIPw30neuw3zvaNzuRlfZ8FmusnbiIJG6H14q1v3t_GvIA7I5jWHdkwGa_7DFU2uSVqNwoI-keO2kMIcrwvUrRZ2olZv_f84aAIILnOCbD912JhUFHYZck7ftae0dJSv8ZqhheenpLuuVG054IH_qE"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 pb-12 px-12 min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 bg-primary rounded-full"></span>
+<span class="font-label text-xs text-primary uppercase tracking-[0.2em]">Transaction View</span>
+</div>
+<h2 class="text-4xl font-extrabold font-headline tracking-tighter">Invoice #CP-9928-TX</h2>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 glass-stroke text-xs font-label uppercase tracking-widest hover:bg-white/5 transition-all">Download PDF</button>
+<button class="px-6 py-2 bg-primary text-on-primary text-xs font-label font-bold uppercase tracking-widest hover:brightness-110 transition-all">Execute Payment</button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Main Invoice Body -->
+<div class="col-span-12 lg:col-span-8">
+<div class="glass-stroke bg-[#1C1B1B]/60 p-10 backdrop-blur-xl relative overflow-hidden">
+<!-- Left Indicator Tab -->
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary"></div>
+<!-- Invoice Header Info -->
+<div class="grid grid-cols-2 gap-12 mb-16">
+<div>
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Issuer</p>
+<p class="font-headline font-bold text-lg mb-1">ClimaPay Infrastructure Ltd.</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                    Terminal 4, Tech Plaza<br/>
+                                    Geneva, Switzerland 1201<br/>
+                                    VAT: CHE-492.302.110
+                                </p>
+</div>
+<div class="text-right">
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Bill To</p>
+<p class="font-headline font-bold text-lg mb-1">Global Logistics Corp</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                    Industrial Harbor Dr. 12<br/>
+                                    Rotterdam, Netherlands<br/>
+                                    Account: #GL-883-9910
+                                </p>
+</div>
+</div>
+<!-- Technical Line Items -->
+<div class="space-y-0 mb-12">
+<div class="grid grid-cols-12 bg-surface-container-highest px-6 py-3 mb-4">
+<div class="col-span-6 font-label text-[10px] tracking-widest text-on-surface-variant">DESCRIPTION / ID</div>
+<div class="col-span-2 font-label text-[10px] tracking-widest text-on-surface-variant text-center">QTY</div>
+<div class="col-span-2 font-label text-[10px] tracking-widest text-on-surface-variant text-right">UNIT PRICE</div>
+<div class="col-span-2 font-label text-[10px] tracking-widest text-on-surface-variant text-right">SUBTOTAL</div>
+</div>
+<div class="grid grid-cols-12 px-6 py-5 border-b border-outline-variant/10 hover:bg-white/5 transition-colors">
+<div class="col-span-6">
+<p class="font-headline font-semibold text-sm">Carbon Offset Credit (Standard)</p>
+<p class="font-label text-[11px] text-on-surface-variant mt-1">REF: CC-2024-AMZ-001</p>
+</div>
+<div class="col-span-2 text-center font-label text-sm">1,250</div>
+<div class="col-span-2 text-right font-label text-sm">€12.00</div>
+<div class="col-span-2 text-right font-label text-sm">€15,000.00</div>
+</div>
+<div class="grid grid-cols-12 px-6 py-5 border-b border-outline-variant/10 hover:bg-white/5 transition-colors">
+<div class="col-span-6">
+<p class="font-headline font-semibold text-sm">Renewable Energy Infrastructure Surcharge</p>
+<p class="font-label text-[11px] text-on-surface-variant mt-1">REF: RE-SUR-992</p>
+</div>
+<div class="col-span-2 text-center font-label text-sm">1</div>
+<div class="col-span-2 text-right font-label text-sm">€4,200.00</div>
+<div class="col-span-2 text-right font-label text-sm">€4,200.00</div>
+</div>
+<div class="grid grid-cols-12 px-6 py-5 border-b border-outline-variant/10 hover:bg-white/5 transition-colors">
+<div class="col-span-6">
+<p class="font-headline font-semibold text-sm">Supply Chain Carbon Auditing Fee</p>
+<p class="font-label text-[11px] text-on-surface-variant mt-1">REF: AUD-TX-4402</p>
+</div>
+<div class="col-span-2 text-center font-label text-sm">4</div>
+<div class="col-span-2 text-right font-label text-sm">€850.00</div>
+<div class="col-span-2 text-right font-label text-sm">€3,400.00</div>
+</div>
+</div>
+<!-- Summary Section -->
+<div class="flex flex-col items-end gap-3 px-6">
+<div class="flex justify-between w-64 border-b border-outline-variant/20 pb-2">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Base Total</span>
+<span class="font-label text-sm line-through decoration-tertiary decoration-2 opacity-60">€22,600.00</span>
+</div>
+<div class="flex justify-between w-64 border-b border-outline-variant/20 pb-2">
+<span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">ESG Rebate (-8.5%)</span>
+<span class="font-label text-sm text-secondary">- €1,921.00</span>
+</div>
+<div class="flex justify-between items-center w-full mt-6 bg-surface-container-high p-6 neon-pulse glow-mint">
+<div class="flex flex-col">
+<span class="font-label text-xs text-primary font-bold uppercase tracking-[0.3em]">Carbon-Adjusted Total</span>
+<span class="text-[10px] text-on-surface-variant font-label mt-1">TAX INCLUSIVE • AUDITED BY CLIMAPAY</span>
+</div>
+<span class="text-4xl font-label font-bold text-primary tracking-tight">€20,679.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Panel Widgets -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Impact Score Card -->
+<div class="glass-stroke bg-[#1C1B1B]/40 p-6 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-tertiary"></div>
+<h3 class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+                            Emission Analysis
+                        </h3>
+<div class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-3xl font-label font-bold">14.2<span class="text-sm font-normal text-on-surface-variant ml-1">MT</span></p>
+<p class="text-[10px] text-on-surface-variant font-label tracking-wide">NET CO2 OFFSET</p>
+</div>
+<div class="text-right">
+<span class="text-secondary font-label text-sm font-bold">+12% vs LY</span>
+</div>
+</div>
+<div class="h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-primary w-[72%]"></div>
+</div>
+</div>
+</div>
+<!-- Ledger History -->
+<div class="glass-stroke bg-[#1C1B1B]/40 p-6 relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary"></div>
+<h3 class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-6">Ledger Activity</h3>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="w-1 bg-primary-container h-10"></div>
+<div>
+<p class="text-xs font-bold font-headline">Invoice Generated</p>
+<p class="text-[10px] font-label text-on-surface-variant uppercase">OCT 24, 09:12 AM</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-1 bg-surface-container-highest h-10"></div>
+<div>
+<p class="text-xs font-bold font-headline">Audit Verified</p>
+<p class="text-[10px] font-label text-on-surface-variant uppercase">OCT 24, 11:45 AM</p>
+</div>
+</div>
+<div class="flex gap-4 opacity-40">
+<div class="w-1 bg-surface-container-highest h-10"></div>
+<div>
+<p class="text-xs font-bold font-headline">Awaiting Disbursement</p>
+<p class="text-[10px] font-label text-on-surface-variant uppercase">PENDING</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Data Abstract -->
+<div class="glass-stroke h-48 relative overflow-hidden">
+<img alt="Data Visualization" class="w-full h-full object-cover opacity-50 grayscale" data-alt="abstract digital visualization of data streams and connection points with neon mint and deep charcoal aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9ufswzGYCifyv7LwcRC_T4g_KKX-olOs3Pq6GGYYL5JdGQj9Bmpx4gm7VI6ofeMCo8Y0uY3RqqFTBb1AivrWaRPK9eJBvygrSh-FEJqiM3q6xg82aSSlWjU6Ljs0EHflrSO3xvnFsxyFLiR9QEFTmpGNpIGCQnIuZjXmy4qDghL6zu3W95nSY7xUED7EGIepWYGRwga24NnnpHqiN38UE8i3RfGG7cJgNnKUC3CnXW8wk4N-MsS2IFwEOKMZS-jYLE9RPDevQBkc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<p class="font-label text-[10px] text-primary tracking-widest uppercase">Encryption Key</p>
+<p class="font-label text-xs text-white">SHA-256: 9F86...5A6B</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
