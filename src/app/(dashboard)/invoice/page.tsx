@@ -28,6 +28,26 @@ export default function InvoicePage() {
         }
     };
 
+
+    const executePayment = async () => {
+        if (!snapshot?.auditHash) return;
+        setLoading(true);
+        try {
+            const resp = await fetch('/api/settlement/execute', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ auditHash: snapshot.auditHash })
+            });
+            if (resp.ok) {
+                setSnapshot({ ...snapshot, status: 'EXECUTED' });
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         fetchOracle();
     }, []);
@@ -52,11 +72,11 @@ export default function InvoicePage() {
                     <h2 className="text-4xl font-extrabold font-headline tracking-tighter">Invoice #{contract.invoiceId}</h2>
                 </div>
                 <div className="flex gap-4">
-                    <button onClick={fetchOracle} className="px-6 py-2 glass-stroke text-xs font-label uppercase tracking-widest hover:bg-white/5 transition-all">
+                    <button onClick={fetchOracle} disabled={status === 'EXECUTED'} className="px-6 py-2 glass-stroke text-xs font-label uppercase tracking-widest hover:bg-white/5 transition-all disabled:opacity-50">
                         Simulate Next Block
                     </button>
-                    <button className="px-6 py-2 bg-primary text-on-primary text-xs font-label font-bold uppercase tracking-widest hover:brightness-110 transition-all">
-                        Execute Payment
+                    <button onClick={executePayment} disabled={status === 'EXECUTED'} className="px-6 py-2 bg-primary text-on-primary text-xs font-label font-bold uppercase tracking-widest hover:brightness-110 transition-all disabled:opacity-50 disabled:bg-surface-container-high disabled:text-on-surface-variant flex items-center gap-2">
+                        {status === 'EXECUTED' ? <><span className="material-symbols-outlined text-sm">lock</span> Settled On-Chain</> : 'Execute Payment'}
                     </button>
                 </div>
             </div>

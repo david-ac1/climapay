@@ -4,12 +4,14 @@ import Link from 'next/link';
 export default function SideNavBar() {
     return (
         <aside className="fixed left-0 top-0 h-screen w-64 bg-[#131313]/60 backdrop-blur-3xl border-r border-[#00E1AB]/20 flex flex-col py-6 z-[60]">
-            <div className="px-6 mb-10">
-                <h1 className="text-xl font-semibold tracking-tighter text-[#00E1AB] font-headline">ClimaPay</h1>
+            <div className="px-6 mb-10 cursor-pointer">
+                <Link href="/">
+                    <h1 className="text-xl font-semibold tracking-tighter text-[#00E1AB] font-headline">ClimaPay</h1>
+                </Link>
                 <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-label mt-1">Institutional Ledger</p>
             </div>
             <nav className="flex-1 px-3 space-y-1">
-                <Link href="/" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
+                <Link href="/dashboard" className="flex items-center px-4 py-3 text-[#BCCAC5] hover:text-white transition-colors hover:bg-white/5 rounded-sm">
                     <span className="material-symbols-outlined mr-3 text-sm">dashboard</span>
                     <span className="font-headline text-sm font-medium">Dashboard</span>
                 </Link>
