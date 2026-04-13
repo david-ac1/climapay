@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass-stroke {
+    border: 0.5px solid transparent;
+    background-image: linear-gradient(#131313, #131313), linear-gradient(45deg, rgba(61, 73, 70, 0.3) 0%, rgba(0, 225, 171, 0.6) 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+  .mono-metrics {
+    font-family: 'Geist Mono', monospace;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+body {
+  background-color: #0D0D0D;
+  color: #e5e2e1;
+  font-family: 'Inter', sans-serif;
+}
