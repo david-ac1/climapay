@@ -37,9 +37,11 @@ export default function SideNavBar() {
                 </Link>
             </nav>
             <div className="px-6 py-4">
-                <button className="w-full py-2.5 bg-primary text-on-primary font-headline font-bold text-xs rounded-[4px] tracking-tight uppercase">
-                    New Transaction
-                </button>
+                <Link href="/contracts/new">
+                    <button className="w-full py-2.5 bg-primary text-on-primary font-headline font-bold text-xs rounded-[4px] tracking-tight uppercase hover:brightness-110 transition-all">
+                        New Ruleset
+                    </button>
+                </Link>
             </div>
             <div className="px-3 pt-4 border-t border-white/5 space-y-1">
                 <a className="flex items-center px-4 py-2 text-[#BCCAC5] hover:text-white transition-colors text-xs font-label" href="#">

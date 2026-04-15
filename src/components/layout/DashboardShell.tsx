@@ -1,14 +1,8 @@
-import type { Metadata } from 'next';
-import '../globals.css';
+import React from 'react';
 import SideNavBar from '@/components/ui/SideNavBar';
 import TopAppBar from '@/components/ui/TopAppBar';
 
-export const metadata: Metadata = {
-    title: 'Contract Oversight | ClimaPay',
-    description: 'ClimaPay Institutional ESG-Linked Invoicing',
-};
-
-export default function DashboardLayout({
+export default function DashboardShell({
     children,
 }: {
     children: React.ReactNode;
