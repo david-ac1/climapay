@@ -5,7 +5,7 @@ ClimaPay is a next-generation "Settlement Middleware" designed to bridge the gap
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ClimaPay operates as a trustless orchestration layer between environmental oracles and financial ledgers.
 
@@ -32,7 +32,7 @@ graph TD
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 - **Dynamic ESG Adjustments**: Contract values shift in real-time based on verified carbon intensity.
 - **Cryptographic Witnessing**: Every transaction is hashed (SHA-256) at the point of verification, creating a permanent audit trail.
@@ -41,7 +41,7 @@ graph TD
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
 - **Database**: [SQLite](https://www.sqlite.org/) via [Prisma ORM](https://www.prisma.io/)
@@ -51,7 +51,7 @@ graph TD
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js 18.x or higher
@@ -81,14 +81,14 @@ Access the platform at `http://localhost:3000`.
 
 ---
 
-## 🎮 Demonstration Guide
+##  Demonstration Guide
 
 Ready to showcase ClimaPay? 
 Refer to our [Demo Guide](./demo_guide.md) for a step-by-step presentation script that covers the end-to-end "Contract → Ingestion → Settlement" flow.
 
 ---
 
-## 📜 Ledger Integrity
+## Ledger Integrity
 
 ClimaPay ensures that no financial settlement occurs without a verified environmental proof. The `Settlement` record in our ledger links every Eurocent to a specific `NodeLog` entry, witnessed by a cryptographic signature.
 
